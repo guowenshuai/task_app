@@ -2,4 +2,7 @@
 <resources>
     <string name="app_name">task_app</string>
     <string name="contact">通讯录</string>
+    <string name="message">短信</string>
+    <string name="call_history">通话记录</string>
+    <string name="will_finish">再按一次，退出程序</string>
 </resources>
