@@ -1,46 +1,27 @@
 package com.basicdata.task_app;
 
-import java.io.InputStream;
-
-import java.util.ArrayList;
-
 import android.app.ListActivity;
-
 import android.content.ContentResolver;
-
 import android.content.ContentUris;
-
 import android.content.Context;
-
 import android.content.Intent;
-
 import android.database.Cursor;
-
 import android.graphics.Bitmap;
-
 import android.graphics.BitmapFactory;
-
 import android.net.Uri;
-
 import android.os.Bundle;
-
 import android.provider.ContactsContract;
-
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-
 import android.provider.ContactsContract.CommonDataKinds.Photo;
-
 import android.text.TextUtils;
-
 import android.view.LayoutInflater;
-
 import android.view.View;
-
 import android.view.ViewGroup;
-
 import android.widget.*;
-
 import android.widget.AdapterView.OnItemClickListener;
+
+import java.io.InputStream;
+import java.util.ArrayList;
 
 
 public class ContactActivity extends ListActivity {
@@ -230,7 +211,6 @@ public class ContactActivity extends ListActivity {
                 String contactName = phoneCursor
 
                         .getString(PHONES_DISPLAY_NAME_INDEX);
-
                 //Sim卡中没有联系人头像
 
                 mContactsName.add(contactName);
