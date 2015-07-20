@@ -49,14 +49,14 @@ public class Message extends ListActivity {
 
     private ArrayList<String> mPhone_Type = new ArrayList<String>();
 
-    ListView myListView = null;
+//    ListView myListView = null;
     MyListAdapter myAdapter = null;
 
     @Override
      public void onCreate(Bundle savedInstanceState) {
         mContext = this;
 
-        myListView = this.getListView();
+//        myListView = this.getListView();
 
         getMegInPhone();
         myAdapter = new MyListAdapter(this);

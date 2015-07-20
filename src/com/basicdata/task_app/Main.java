@@ -3,6 +3,7 @@ package com.basicdata.task_app;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class Main extends Activity {
     private void setListeners() {
         button_contact.setOnClickListener(bt_contact);
         button_message.setOnClickListener(bt_message);
+        button_call_history.setOnClickListener(bt_call_history);
     }
 
     private Button.OnClickListener bt_contact = new Button.OnClickListener() {
@@ -53,6 +55,18 @@ public class Main extends Activity {
             Intent intent = new Intent();
             intent.setClass(Main.this, Message.class);
             startActivity(intent);
+        }
+    };
+
+    private Button.OnClickListener bt_call_history = new Button.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Main.this, DummyNote.class);
+            Log.v("Main", "before");
+            startActivity(intent);
+            Log.v("Main", "after");
         }
     };
 
