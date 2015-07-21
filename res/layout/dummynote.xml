@@ -6,4 +6,8 @@
 
     <ListView android:id="@+id/android:list"
               android:layout_width="wrap_content" android:layout_height="wrap_content"></ListView>
+    <TextView android:id="@+id/empty"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="No Notes!"/>
 </LinearLayout>

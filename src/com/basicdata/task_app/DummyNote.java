@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -20,6 +22,9 @@ public class DummyNote extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.dummynote);
+        getListView().setEmptyView(findViewById(R.id.empty));
+        registerForContextMenu(getListView());
         try {
             setAdapter();
         } catch (SQLException e) {
@@ -79,13 +84,13 @@ public class DummyNote extends ListActivity {
     }
 
 
-    private static int clickItemId = -1;
+    private static long clickItemId = -1;
     private static final int ACTIVITY_EDIT = 0x1001;/*一个用于识别intent Activity的自定义数字标识符*/
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
-        clickItemId = position;
+        clickItemId = id;
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(this, NoteEdit.class);
         intent.putExtra(NotesDbAdapter.KEY_ROWID, id);
@@ -99,5 +104,29 @@ public class DummyNote extends ListActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         fillData();
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info;
+        info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()) {
+            case MENU_DELETE:
+                Log.d("MENU", "item" + info.id);
+                mDbHelper.delete(info.id);
+                fillData();
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.add(0, MENU_INSERT, 0, getString(R.string.add_notes));
+        menu.setHeaderTitle("Detail view");
+        menu.add(0, MENU_DELETE, 0, getString(R.string.del_notes));
+        super.onCreateContextMenu(menu, v, menuInfo);
     }
 }

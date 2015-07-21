@@ -52,7 +52,11 @@ public class NoteEdit extends Activity {
             @Override
             public void onClick(View v) {
                 mDbHelper.update(mRowId, field_note.getText().toString());
-                setResult(RESULT_OK);/*返回给父亲Activity的标示符*/
+                /*  返回给父亲Activity的结果，setResult是重载函数
+                *   setResult(int resultCode, Intent data);
+                *   setResult(int resultCode);
+                */
+                setResult(RESULT_OK);
                 finish();
             }
         });
@@ -61,6 +65,7 @@ public class NoteEdit extends Activity {
     private void populateFields() {
         if (mRowId != null) {
             Cursor note = mDbHelper.get(mRowId);
+            //noinspection deprecation
             startManagingCursor(note);
             field_note.setText(note.getString(note.getColumnIndexOrThrow(NotesDbAdapter.KEY_NOTE)));
             Log.v("NOTE EDIT", String.valueOf(note.getColumnIndexOrThrow(NotesDbAdapter.KEY_NOTE)));
