@@ -1,6 +1,7 @@
 package com.basicdata.task_app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -52,11 +53,16 @@ public class NoteEdit extends Activity {
             @Override
             public void onClick(View v) {
                 mDbHelper.update(mRowId, field_note.getText().toString());
+                /*test for return Intent*/
+                Intent ret = new Intent();
+                ret.putExtra("back_values", "Back Data");
+                setResult(RESULT_OK, ret);
+
                 /*  返回给父亲Activity的结果，setResult是重载函数
                 *   setResult(int resultCode, Intent data);
                 *   setResult(int resultCode);
                 */
-                setResult(RESULT_OK);
+//                setResult(RESULT_OK);
                 finish();
             }
         });

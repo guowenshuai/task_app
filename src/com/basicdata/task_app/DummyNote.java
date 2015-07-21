@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 
@@ -103,7 +104,11 @@ public class DummyNote extends ListActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        fillData();
+        if(requestCode == ACTIVITY_EDIT && resultCode == RESULT_OK) {
+            String result = data.getStringExtra("back_values");
+            Toast.makeText(getApplicationContext(), data.getStringExtra("back_values"), Toast.LENGTH_SHORT).show();
+            fillData();
+        }
     }
 
     @Override
