@@ -1,11 +1,14 @@
 package com.basicdata.task_app;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by jky on 15-7-20.
@@ -19,12 +22,12 @@ public class NotesDbAdapter {
     private static final String DATABASE_NAME = "notes.db";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_TABLE = "notes";
-    private static final String  DATABASE_CREATE = "create table notes ("
-            +"_id INTEGER PRIMARY KEY,"
-            + "note TEXT,"
-            + "created INTEGER,"
-//                + "modified INTEGER"
-            + ");";
+    private static final String  DATABASE_CREATE =
+            "create table notes ("
+                +"_id INTEGER PRIMARY KEY,"
+                +"note TEXT NOT NULL,"
+                +"created INTEGER"
+            +");";
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -34,7 +37,9 @@ public class NotesDbAdapter {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
+            System.out.println("oncreate db");
             db.execSQL(DATABASE_CREATE);
+            Log.v("notes", "over");
         }
 
         @Override
@@ -50,6 +55,7 @@ public class NotesDbAdapter {
     }
 
     public NotesDbAdapter open() throws SQLException {
+        System.out.println("open db");
         dbHelper = new DatabaseHelper(mCtx);
         db = dbHelper.getWritableDatabase();
         return this;
@@ -82,5 +88,14 @@ public class NotesDbAdapter {
                 null,   /*having clause ******  having语句*/
                 null   /*Order-by clause  ********  order-by 语句*/
                 );
+    }
+
+    public long create(String Note) {
+        Date now = new Date();
+        ContentValues args = new ContentValues();
+        args.put(KEY_NOTE, Note);
+        args.put(KEY_CREATED, now.getTime());
+
+        return db.insert(DATABASE_TABLE, null, args);
     }
 }

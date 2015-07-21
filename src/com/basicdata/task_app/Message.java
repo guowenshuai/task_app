@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.net.UrlQuerySanitizer;
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,12 +50,15 @@ public class Message extends ListActivity {
 
     private ArrayList<String> mPhone_Type = new ArrayList<String>();
 
+    private static final String TAG = "Message";
+
 //    ListView myListView = null;
     MyListAdapter myAdapter = null;
 
     @Override
      public void onCreate(Bundle savedInstanceState) {
         mContext = this;
+        Log.v(TAG, "oncreate");
 
 //        myListView = this.getListView();
 

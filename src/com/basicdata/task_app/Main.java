@@ -13,10 +13,14 @@ import android.widget.Toast;
  * Created by jky on 15-7-16.
  */
 public class Main extends Activity {
+
+    private static final String TAG = "Main";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        Log.v(TAG, "main activity");
 
         findViews();
         setListeners();
