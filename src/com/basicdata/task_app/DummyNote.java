@@ -1,6 +1,7 @@
 package com.basicdata.task_app;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -79,11 +80,24 @@ public class DummyNote extends ListActivity {
 
 
     private static int clickItemId = -1;
+    private static final int ACTIVITY_EDIT = 0x1001;/*一个用于识别intent Activity的自定义数字标识符*/
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
         clickItemId = position;
         super.onListItemClick(l, v, position, id);
+        Intent intent = new Intent(this, NoteEdit.class);
+        intent.putExtra(NotesDbAdapter.KEY_ROWID, id);
+        startActivityForResult(intent, ACTIVITY_EDIT);/*startActivityForResult启动的intent，
+                            *第二个参数数标识新的Activity的标识符，该函数和onActivityResult是共生的关系
+                            *onActivityResult负责处理从其他Activity返回的消息*/
+    }
+
+    /*onActivityResult根据接收到的requestCode来判断是哪个调用的Activity返回的数据*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        fillData();
     }
 }
