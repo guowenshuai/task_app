@@ -3,8 +3,11 @@ package com.basicdata.task_app;
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import java.sql.SQLException;
@@ -36,21 +39,24 @@ public class DummyNote extends ListActivity {
     private void fillData() {
         mNotesCursor = mDbHelper.getall();
         startManagingCursor(mNotesCursor);
-        String[] from = new String[] {NotesDbAdapter.KEY_NOTE};
+        String[] from = new String[]{NotesDbAdapter.KEY_NOTE};
 
-        int[] to = new int[] {android.R.id.text1};
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,mNotesCursor, from, to);
+        int[] to = new int[]{android.R.id.text1};
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, mNotesCursor, from, to);
         setListAdapter(adapter);
 
     }
 
     private int mNoteNumber = 1;
     protected static final int MENU_INSERT = Menu.FIRST;
+    protected static final int MENU_DELETE = Menu.FIRST+1;
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         menu.add(0, MENU_INSERT, 0, getString(R.string.add_notes));
+        menu.add(0, MENU_DELETE, 0, getString(R.string.del_notes));
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -62,38 +68,22 @@ public class DummyNote extends ListActivity {
                 mDbHelper.create(noteName);
                 fillData();
                 return true;
+            case MENU_DELETE:
+                mDbHelper.delete(clickItemId);
+                clickItemId = -1;
+                fillData();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    /*    private static final String[] note_array =  new String[] {
-            "gasolin",
-            "crota",
-            "louk",
-            "magicion"
-    };*/
-/*    private ListView list;
+
+
+    private static int clickItemId = -1;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.dummynote);
+    protected void onListItemClick(ListView l, View v, int position, long id) {
 
-        try {
-            createData();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        list = (ListView) findViewById(R.id.android_list);
-        list.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, note_array));
-
+        clickItemId = position;
+        super.onListItemClick(l, v, position, id);
     }
-
-    private NotesDbAdapter mDbHelper;
-
-    private void createData() throws SQLException {
-        mDbHelper = new NotesDbAdapter(this);
-        mDbHelper.open();
-    }*/
 }

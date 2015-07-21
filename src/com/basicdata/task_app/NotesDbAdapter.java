@@ -98,4 +98,26 @@ public class NotesDbAdapter {
 
         return db.insert(DATABASE_TABLE, null, args);
     }
+
+    public boolean delete (long rowID) {
+        return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowID, null) > 0;
+    }
+
+    /*query single entry*/
+    public Cursor get(long rowId) {
+        Cursor mCursor = db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_NOTE, KEY_CREATED},
+                KEY_ROWID + "=" + rowId, null, null, null, null);
+        if(mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
+    /*update*/
+    public boolean update(long rowId, String note) {
+        ContentValues args = new ContentValues();
+        args.put(KEY_NOTE, note);
+
+        return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    }
 }
