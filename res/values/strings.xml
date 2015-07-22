@@ -7,4 +7,5 @@
     <string name="will_finish">再按一次，退出程序</string>
     <string name="add_notes">新增记事</string>
     <string name="del_notes">删除记事</string>
+    <string name="Fragment">Fragment实例</string>
 </resources>

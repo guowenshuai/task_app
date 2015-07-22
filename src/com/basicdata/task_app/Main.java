@@ -29,17 +29,20 @@ public class Main extends Activity {
     private Button button_contact;
     private Button button_message;
     private Button button_call_history;
+    private Button button_fragment;
 
     private void findViews() {
         button_contact = (Button) findViewById(R.id.button_contact);
         button_message = (Button) findViewById(R.id.button_message);
         button_call_history = (Button) findViewById(R.id.button_call_history);
+        button_fragment = (Button) findViewById(R.id.button_fragment);
     }
 
     private void setListeners() {
         button_contact.setOnClickListener(bt_contact);
         button_message.setOnClickListener(bt_message);
         button_call_history.setOnClickListener(bt_call_history);
+        button_fragment.setOnClickListener(bt_fragment);
     }
 
     private Button.OnClickListener bt_contact = new Button.OnClickListener() {
@@ -71,6 +74,15 @@ public class Main extends Activity {
             Log.v("Main", "before");
             startActivity(intent);
             Log.v("Main", "after");
+        }
+    };
+
+    private Button.OnClickListener bt_fragment = new Button.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Main.this, Main_Fragment_Page.class);
+            startActivity(intent);
         }
     };
 
