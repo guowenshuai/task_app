@@ -15,5 +15,9 @@
     <Button android:id="@+id/button_fragment"
             android:layout_width="fill_parent" android:layout_height="40dp"
             android:text="@string/Fragment"/>
+    <Button android:id="@+id/button_fragment_communications"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="fargment和Activity通信"
+            />
 
 </LinearLayout>

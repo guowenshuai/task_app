@@ -4,18 +4,14 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.net.UrlQuerySanitizer;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -63,6 +59,7 @@ public class Message extends ListActivity {
 //        myListView = this.getListView();
 
         getMegInPhone();
+
         myAdapter = new MyListAdapter(this);
 
         setListAdapter(myAdapter);

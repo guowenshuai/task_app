@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <fragment android:name="com.basicdata.task_app.FragmentList_for_news"
+              android:id="@+id/fragment_list_for_news"
+              android:layout_width="80dp" android:layout_height="fill_parent" ></fragment>
+
+    <fragment android:name="com.basicdata.task_app.fragement_show_news"
+              android:id="@+id/fragment_view_show_text"
+              android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_weight="1"></fragment>
+
+</LinearLayout>

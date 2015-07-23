@@ -30,6 +30,7 @@ public class Main_Fragment_Page extends Activity {
     private static final int ADD_FRAGMENT = 3;
     private static final int REMOVE_FRAGMENT = 4;
 
+
     /*设置对fragment的管理和关联*/
     private void setFragment(int flag, Fragment setFragment) {
 

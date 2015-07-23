@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent" android:background="@android:color/white"
+        >
 <!--    <fragment android:name="com.basicdata.task_app.first_fragment"
             android:layout_width="fill_parent" android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -15,24 +16,25 @@
     <Button android:layout_width="fill_parent" android:layout_height="40dp"
             android:id="@+id/Button_1"
             android:text="button_1"
+            android:background="#ffd479ff"
             />
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
             android:id="@+id/fragment_container"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical" android:background="#ff9feeeb" android:layout_weight="1">
     </LinearLayout>
 
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="match_parent"
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:orientation="horizontal"
-                  android:gravity="right"
-            >
+                  android:gravity="right">
 
         <Button android:layout_width="wrap_content" android:layout_height="40dp"
                 android:id="@+id/Button_2"
-                android:text="button_2"
-            />
+                android:text="button_2" android:background="#ff654e43"
+                android:shadowColor="#ffffff" android:shadowDx="3" android:shadowDy="-3" android:shadowRadius="0.01"/>
+
         <Button android:layout_width="wrap_content" android:layout_height="40dp"
                 android:id="@+id/Button_3"
                 android:text="button_3"/>
     </LinearLayout>
+
 </LinearLayout>
