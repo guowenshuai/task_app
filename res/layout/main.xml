@@ -19,5 +19,9 @@
             android:layout_width="fill_parent" android:layout_height="40dp"
             android:text="fargment和Activity通信"
             />
+    <Button android:id="@+id/button_test_thread"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="Android Thread测试"
+            />
 
 </LinearLayout>

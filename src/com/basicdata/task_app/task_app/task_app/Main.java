@@ -1,29 +1,22 @@
-package com.basicdata.task_app;
+package com.basicdata.task_app.task_app.task_app;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import java.util.logging.Handler;
+import com.basicdata.task_app.R;
 
 /**
  * Created by jky on 15-7-16.
  */
 public class Main extends Activity {
-
-    private static final String TAG = "Main";
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Log.v(TAG, "main activity");
 
         findViews();
         setListeners();
@@ -32,26 +25,16 @@ public class Main extends Activity {
     private Button button_contact;
     private Button button_message;
     private Button button_call_history;
-    private Button button_fragment;
-    private Button button_fragment_communications;
-    private Button button_thread;
 
     private void findViews() {
         button_contact = (Button) findViewById(R.id.button_contact);
         button_message = (Button) findViewById(R.id.button_message);
         button_call_history = (Button) findViewById(R.id.button_call_history);
-        button_fragment = (Button) findViewById(R.id.button_fragment);
-        button_fragment_communications = (Button) findViewById(R.id.button_fragment_communications);
-        button_thread = (Button) findViewById(R.id.button_test_thread);
     }
 
     private void setListeners() {
         button_contact.setOnClickListener(bt_contact);
         button_message.setOnClickListener(bt_message);
-        button_call_history.setOnClickListener(bt_call_history);
-        button_fragment.setOnClickListener(bt_fragment);
-        button_fragment_communications.setOnClickListener(bt_fragment_communications);
-        button_thread.setOnClickListener(bt_test_thread);
     }
 
     private Button.OnClickListener bt_contact = new Button.OnClickListener() {
@@ -70,47 +53,6 @@ public class Main extends Activity {
         public void onClick(View v) {
             Intent intent = new Intent();
             intent.setClass(Main.this, Message.class);
-            startActivity(intent);
-        }
-    };
-
-    private Button.OnClickListener bt_call_history = new Button.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(Main.this, DummyNote.class);
-            Log.v("Main", "before");
-            startActivity(intent);
-            Log.v("Main", "after");
-        }
-    };
-
-    private Button.OnClickListener bt_fragment = new Button.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(Main.this, Main_Fragment_Page.class);
-            startActivity(intent);
-        }
-    };
-
-    private Button.OnClickListener bt_fragment_communications = new Button.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(Main.this, FragmentCommunications.class);
-            startActivity(intent);
-        }
-    };
-
-    private Button.OnClickListener bt_test_thread = new Button.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(Main.this, ThreadActivity.class);
             startActivity(intent);
         }
     };

@@ -3,7 +3,7 @@
           package="com.basicdata.task_app"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="12"/>
+    <uses-sdk android:minSdkVersion="10"/>
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
         <activity android:name=".ContactActivity"
                   android:label="@string/app_name">
@@ -24,6 +24,8 @@
         <activity android:name=".NoteEdit" android:label="日记编写"/>
         <activity android:name=".Main_Fragment_Page" android:label="Main_Frgment"/>
         <activity android:name=".FragmentCommunications" android:label="通信"/>
+        <activity android:name=".ThreadActivity" android:label="Thread test"/>
+        <activity android:name=".ThreadActivity" android:label="Thread test"/>
     </application>
     <!--读取联系人权限-->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>

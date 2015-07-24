@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.logging.Handler;
+
 /**
  * Created by jky on 15-7-22.
  */
@@ -25,6 +27,7 @@ public class Main_Fragment_Page extends Activity {
 
     }
 
+    private Thread mThread;
     private static final int INIT_FRAGMENT = 1;
     private static final int REPLACE_FRAGMENT = 2;
     private static final int ADD_FRAGMENT = 3;

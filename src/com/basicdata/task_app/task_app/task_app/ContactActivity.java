@@ -1,4 +1,4 @@
-package com.basicdata.task_app;
+package com.basicdata.task_app.task_app.task_app;
 
 import android.app.ListActivity;
 import android.content.ContentResolver;
@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
+import com.basicdata.task_app.R;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -94,7 +95,9 @@ public class ContactActivity extends ListActivity {
 
                 //调用系统方法拨打电话
 
-                Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mContactsNumber.get(position)));
+                Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri
+
+                        .parse("tel:" + mContactsNumber.get(position)));
 
                 startActivity(dialIntent);
 
