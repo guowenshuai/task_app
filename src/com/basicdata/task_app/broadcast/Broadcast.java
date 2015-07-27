@@ -5,11 +5,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.Image;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.basicdata.task_app.R;
 
@@ -24,6 +27,18 @@ public class Broadcast extends Activity {
     private static final String TAG = "Broadcast";
     private static boolean FLAG_BROADCAST = true;
 
+    private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
+                int intLevel = intent.getIntExtra("level", 0);
+                int intScale =intent.getIntExtra("scale", 100);
+                updateView(intLevel, intScale);
+            }
+        }
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +48,46 @@ public class Broadcast extends Activity {
         setListeners();
     }
 
+    @Override
+    protected void onStart() {
+        registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(mBatInfoReceiver);
+        super.onStop();
+    }
+
+    private void updateView(int intLevel, int intScale) {
+        int percent = intLevel * 100 /intScale;
+        if (percent < 5) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_0);
+        } else if(percent < 10) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_10);
+        } else if (percent < 20) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_20);
+        } else if (percent < 40) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_40);
+        } else if (percent < 60) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_60);
+        } else if (percent < 80) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_80);
+        } else if (percent <= 100) {
+            view_battery.setImageResource(R.drawable.stat_sys_battery_100);
+        }
+        text_msg_battery.setText("电量剩余：" + String.valueOf(percent) + "%");
+    }
+
     private Button btn_register_broadcast;
     private Button btn_send_broadcast;
     private Button btn_unregister_broadcast;
     private Button btn_send_broadcast_asy;
     private Button btn_cancel_broadcast;
+    private ImageView view_battery;
+    private TextView text_msg_battery;
+
 
     private void findViews() {
         btn_register_broadcast = (Button) findViewById(R.id.button_register_broadcast);
@@ -45,10 +95,11 @@ public class Broadcast extends Activity {
         btn_unregister_broadcast = (Button) findViewById(R.id.button_unregister_broadcast);
         btn_send_broadcast_asy = (Button) findViewById(R.id.button_send_broadcast_asynchronous);
         btn_cancel_broadcast = (Button) findViewById(R.id.button_cancel_broadcast);
+        view_battery = (ImageView) findViewById(R.id.image_battery);
+        text_msg_battery = (TextView) findViewById(R.id.text_msg_battery);
     }
 
     private void setListeners() {
-
 
         /*注册广播接受器*/
         btn_register_broadcast.setOnClickListener(new Button.OnClickListener() {

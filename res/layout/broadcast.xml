@@ -22,5 +22,12 @@
     <Button android:id="@+id/button_cancel_broadcast"
             android:layout_width="fill_parent" android:layout_height="40dp"
             android:text="取消异步广播"/>
+    <ImageView android:id="@+id/image_battery"
+               android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:src="@drawable/stat_sys_battery_0" android:layout_gravity="center_horizontal"/>
+    <TextView android:id="@+id/text_msg_battery"
+              android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="ddddd" android:layout_gravity="center_horizontal"/>
+
 
 </LinearLayout>
