@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.basicdata.task_app.broadcast.Broadcast;
 
 import java.util.logging.Handler;
 
@@ -35,6 +36,7 @@ public class Main extends Activity {
     private Button button_fragment;
     private Button button_fragment_communications;
     private Button button_thread;
+    private Button button_test_broadcast;
 
     private void findViews() {
         button_contact = (Button) findViewById(R.id.button_contact);
@@ -43,6 +45,7 @@ public class Main extends Activity {
         button_fragment = (Button) findViewById(R.id.button_fragment);
         button_fragment_communications = (Button) findViewById(R.id.button_fragment_communications);
         button_thread = (Button) findViewById(R.id.button_test_thread);
+        button_test_broadcast = (Button) findViewById(R.id.button_test_broadcast);
     }
 
     private void setListeners() {
@@ -52,6 +55,7 @@ public class Main extends Activity {
         button_fragment.setOnClickListener(bt_fragment);
         button_fragment_communications.setOnClickListener(bt_fragment_communications);
         button_thread.setOnClickListener(bt_test_thread);
+        button_test_broadcast.setOnClickListener(bt_test_broadcast);
     }
 
     private Button.OnClickListener bt_contact = new Button.OnClickListener() {
@@ -111,6 +115,16 @@ public class Main extends Activity {
         public void onClick(View v) {
             Intent intent = new Intent();
             intent.setClass(Main.this, ThreadActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private Button.OnClickListener bt_test_broadcast = new Button.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Main.this, Broadcast.class);
             startActivity(intent);
         }
     };

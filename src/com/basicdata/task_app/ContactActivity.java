@@ -1,10 +1,7 @@
 package com.basicdata.task_app;
 
 import android.app.ListActivity;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -308,5 +305,6 @@ public class ContactActivity extends ListActivity {
 
         TextView text ;
     }
+
 
 }

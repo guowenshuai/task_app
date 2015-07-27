@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <Button android:id="@+id/button_register_broadcast"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="注册广播接收器"/>
+
+    <Button android:id="@+id/button_send_broadcast"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="发送普通广播"/>
+
+    <Button android:id="@+id/button_unregister_broadcast"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="取消广播接收器"/>
+
+    <Button android:id="@+id/button_send_broadcast_asynchronous"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="发送异步广播"/>
+    <Button android:id="@+id/button_cancel_broadcast"
+            android:layout_width="fill_parent" android:layout_height="40dp"
+            android:text="取消异步广播"/>
+
+</LinearLayout>
