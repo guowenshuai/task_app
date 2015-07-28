@@ -1,6 +1,7 @@
 package com.basicdata.task_app.broadcast;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.IntentFilter;
 import android.media.Image;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.basicdata.task_app.R;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by jky on 15-7-27.
@@ -27,6 +32,7 @@ public class Broadcast extends Activity {
     private static final String TAG = "Broadcast";
     private static boolean FLAG_BROADCAST = true;
 
+    /*过滤电量改变的广播接受器*/
     private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -51,6 +57,15 @@ public class Broadcast extends Activity {
     @Override
     protected void onStart() {
         registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        List<ActivityManager.RunningServiceInfo> serviceList = getRunningServicesList(this);
+        Iterator<ActivityManager.RunningServiceInfo> l = serviceList.iterator();
+        String str = "";
+        while (l.hasNext()) {
+            ActivityManager.RunningServiceInfo serviceInfo = (ActivityManager.RunningServiceInfo) l.next();
+            str = str + "\n" + serviceInfo.service.getClassName();
+            text_show_running_service.setText(str);
+        }
         super.onStart();
     }
 
@@ -87,6 +102,7 @@ public class Broadcast extends Activity {
     private Button btn_cancel_broadcast;
     private ImageView view_battery;
     private TextView text_msg_battery;
+    private TextView text_show_running_service;
 
 
     private void findViews() {
@@ -97,6 +113,8 @@ public class Broadcast extends Activity {
         btn_cancel_broadcast = (Button) findViewById(R.id.button_cancel_broadcast);
         view_battery = (ImageView) findViewById(R.id.image_battery);
         text_msg_battery = (TextView) findViewById(R.id.text_msg_battery);
+        text_show_running_service = (TextView) findViewById(R.id.text_show_running_service);
+        text_show_running_service.setMovementMethod(new ScrollingMovementMethod());
     }
 
     private void setListeners() {
@@ -185,5 +203,12 @@ public class Broadcast extends Activity {
             }
         });
     }
+
+    private static List<ActivityManager.RunningServiceInfo> getRunningServicesList(Context ctx) {
+        ActivityManager activityManager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> servicesList = activityManager.getRunningServices(Integer.MAX_VALUE);
+        return servicesList;
+    }
+
 }
 
