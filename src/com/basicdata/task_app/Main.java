@@ -1,6 +1,7 @@
 package com.basicdata.task_app;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,7 @@ public class Main extends Activity {
     private Button button_fragment_communications;
     private Button button_thread;
     private Button button_test_broadcast;
+    private Button button_test_call_phone;
 
     private void findViews() {
         button_contact = (Button) findViewById(R.id.button_contact);
@@ -46,6 +48,7 @@ public class Main extends Activity {
         button_fragment_communications = (Button) findViewById(R.id.button_fragment_communications);
         button_thread = (Button) findViewById(R.id.button_test_thread);
         button_test_broadcast = (Button) findViewById(R.id.button_test_broadcast);
+        button_test_call_phone = (Button) findViewById(R.id.button_test_call_phone);
     }
 
     private void setListeners() {
@@ -56,6 +59,14 @@ public class Main extends Activity {
         button_fragment_communications.setOnClickListener(bt_fragment_communications);
         button_thread.setOnClickListener(bt_test_thread);
         button_test_broadcast.setOnClickListener(bt_test_broadcast);
+        button_test_call_phone.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number = "18851660607";
+                RingPhone ringPhone = new RingPhone(number, v.getContext());
+                ringPhone.callTheNumber();
+            }
+        });
     }
 
     private Button.OnClickListener bt_contact = new Button.OnClickListener() {

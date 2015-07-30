@@ -20,7 +20,7 @@ public class FragmentList_for_news extends ListFragment {
     private LayoutInflater minflater = null;
     private Context context = null;
 
-    /*第一步  第一一个供宿主Activity调用的接口*/
+    /*第一步  提供一个供宿主Activity调用的接口*/
     public interface getNewsTitle {
         public void showMessage(int index);
     }
@@ -28,7 +28,10 @@ public class FragmentList_for_news extends ListFragment {
     /*第二步  自己这边实例化接口*/
     private getNewsTitle get_news_title;
 
-    /*第三步  在fragment附属Activity时候，检测Activity是否实现了接口的方法*/
+    /*第三步  在fragment附属Activity时候，检测Activity是否实现了接口的方法
+    *
+    * 如果实现则拿到这个借口，否则抛出异常
+    *       */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -76,6 +79,8 @@ public class FragmentList_for_news extends ListFragment {
 
     }
 
+
+    /*第四步   在需要的时候调用Activity端实现的方法*/
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
