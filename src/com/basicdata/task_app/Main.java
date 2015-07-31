@@ -1,17 +1,17 @@
 package com.basicdata.task_app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.basicdata.task_app.broadcast.Broadcast;
-
-import java.util.logging.Handler;
+import com.basicdata.task_app.phoneCall.InterceptPhoneCall_Listener;
 
 /**
  * Created by jky on 15-7-16.
@@ -29,6 +29,8 @@ public class Main extends Activity {
 
         findViews();
         setListeners();
+        myPhoneService();
+
 
     }
     private Button button_contact;
@@ -160,5 +162,11 @@ public class Main extends Activity {
     }
     private void show_Toast() {
         Toast.makeText(Main.this, getString(R.string.will_finish),Toast.LENGTH_SHORT).show();
+    }
+
+    /*My Phone Service*/
+    private void myPhoneService() {
+        TelephonyManager manager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
+        manager.listen(new InterceptPhoneCall_Listener(this), PhoneStateListener.LISTEN_CALL_STATE);
     }
 }
