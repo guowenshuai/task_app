@@ -2,8 +2,10 @@ package com.basicdata.task_app.phoneCall;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 /**
  * Created by jky on 15-7-31.
@@ -28,6 +30,7 @@ public class InterceptPhoneCall_Listener extends PhoneStateListener{
             case TelephonyManager.CALL_STATE_RINGING:
                 result += "手机铃声响了，来电号码：" +
                         incomingNumber;
+
                 myPhoneProcess();
                 break;
             case TelephonyManager.CALL_STATE_OFFHOOK:
@@ -45,7 +48,7 @@ public class InterceptPhoneCall_Listener extends PhoneStateListener{
         intent.putExtra("PHONE_NUMBER", inComingNumber);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
+        Log.d("来电话了", "电话电话");
         mContext.startActivity(intent);
     }
 }

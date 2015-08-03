@@ -1,5 +1,7 @@
-package com.android.internal.telephony;
-interface ITelephony{
-boolean endCall();
-void answerRingingCall();
+package com.basicdata.task_app.aidl;
+
+interface ITelephony {
+    boolean endCall();
+    void answerRingingCall();
+
 }

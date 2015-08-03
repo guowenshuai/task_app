@@ -152,6 +152,7 @@ public class Main extends Activity {
                 show_Toast();
                 exitTime = System.currentTimeMillis();
             } else {
+
                 this.finish();
                 System.exit(0);/*System.exit(0)导致当前线程停止并使其他线程终止*/
             }
