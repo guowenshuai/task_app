@@ -1,3 +1,5 @@
+/*___Generated_by_IDEA___*/
+
 /*
  * This file is auto-generated.  DO NOT MODIFY.
  * Original file: /home/jky/IdeaProjects/task_app/src/com/basicdata/task_app/aidl/ITelephony.aidl

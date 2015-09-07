@@ -51,13 +51,20 @@
 -->
             </intent-filter>
         </receiver>
+
         <receiver android:name=".broadcast.MsgInfoReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
-        <!--*********************************-->
 
+        <receiver android:name=".broadcast.PhoneBroadcastReceiver" android:label="P">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.PHONE_STATE"/>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+            </intent-filter>
+        </receiver>
+        <!--*********************************-->
     </application>
     
     <!--读取联系人权限-->
@@ -87,5 +94,5 @@
 
     <!--打电话的监听权限-->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
-    
+
 </manifest>

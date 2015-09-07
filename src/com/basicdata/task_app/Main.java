@@ -29,8 +29,6 @@ public class Main extends Activity {
 
         findViews();
         setListeners();
-        myPhoneService();
-
 
     }
     private Button button_contact;
@@ -167,7 +165,6 @@ public class Main extends Activity {
 
     /*My Phone Service*/
     private void myPhoneService() {
-        TelephonyManager manager = (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
-        manager.listen(new InterceptPhoneCall_Listener(this), PhoneStateListener.LISTEN_CALL_STATE);
+
     }
 }

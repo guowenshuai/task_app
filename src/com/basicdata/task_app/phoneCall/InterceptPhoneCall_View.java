@@ -37,17 +37,8 @@ public class InterceptPhoneCall_View extends Activity{
         mContext = this;
         findView();
         setListeners();
-//        try {
-//            iTelephony = getPhoneInterface(mContext);
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
         try {
-            getPhoneInterface(mContext);
+            iTelephony = getPhoneInterface(mContext);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -100,6 +91,7 @@ public class InterceptPhoneCall_View extends Activity{
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+
      /*   Method getITelephonyMethod = mTelephonyManger.getClass().getDeclaredMethod("getITelephony");
         getITelephonyMethod.setAccessible(true);*/
 
